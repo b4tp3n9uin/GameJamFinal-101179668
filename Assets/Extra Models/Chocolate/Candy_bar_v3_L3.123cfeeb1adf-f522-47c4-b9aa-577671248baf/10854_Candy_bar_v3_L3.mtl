@@ -1,0 +1,30 @@
+# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
+# File Created: 02.06.2011 10:24:25
+
+newmtl _10854_Candy_bar_v3_L3Black_Candy_bar_jpg
+	Ns 48.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0000 0.0000 0.0000
+	Kd 0.1887 0.1690 0.1136
+	Ks 0.1635 0.1471 0.0835
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Candy_bar.jpg
+	map_Kd Candy_bar.jpg
+
+newmtl _10854_Candy_bar_v3_L3Withe_Candy_bar_jpg
+	Ns 50.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0000 0.0000 0.0000
+	Kd 0.8000 0.8000 0.8000
+	Ks 0.2341 0.1188 0.2365
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Candy_bar.jpg
+	map_Kd Candy_bar.jpg
