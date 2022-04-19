@@ -33,4 +33,9 @@ public class AIScript : MonoBehaviour
             anim.SetInteger("State", 0);
         }
     }
+
+    public void IncreaseSpeed()
+    {
+        navAgent.speed += 0.5f;
+    }
 }
