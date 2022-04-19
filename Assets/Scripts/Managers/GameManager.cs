@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class GameManager : MonoBehaviour
 
     int randomNum;
     int lives;
+    bool isPaused;
 
     float timer;
     float initialTimer = 11.0f;
@@ -24,6 +26,11 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI timeText;
     public TextMeshProUGUI ChocolateText;
 
+    [Header("Pannels")]
+    public GameObject PausePannel;
+    public GameObject LosePannel;
+    public GameObject WinPannel;
+
     void Awake()
     {
         enemy = FindObjectOfType<AIScript>();
@@ -32,7 +39,13 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        isPaused = false;
+
         timer = initialTimer;
+
+        PausePannel.SetActive(false);
+        LosePannel.SetActive(false);
+        WinPannel.SetActive(false);
 
         for (int i = 0; i < chocolates.Length; i++)
         {
@@ -55,6 +68,34 @@ public class GameManager : MonoBehaviour
         Timer();
     }
 
+    public void Pause()
+    {
+        // Pause
+        if (!isPaused)
+        {
+            isPaused = true;
+            Time.timeScale = 0;
+            PausePannel.SetActive(true);
+        }
+        // Unpause
+        else
+        {
+            isPaused = false;
+            Time.timeScale = 1;
+            PausePannel.SetActive(false);
+        }
+    }
+
+    public void PlayAgainPressed()
+    {
+        SceneManager.LoadScene("SampleScene");
+    }
+
+    public void MenuPressed()
+    {
+        SceneManager.LoadScene("MenuScreen");
+    }
+
     public void ChocoCollide()
     {
         chocolates[randomNum].SetActive(false);
@@ -66,7 +107,7 @@ public class GameManager : MonoBehaviour
         if (score >= chocolates.Length)
         {
             Time.timeScale = 0;
-            Debug.Log("Win");
+            WinPannel.SetActive(true);
             return;
         }
         else 
@@ -114,7 +155,7 @@ public class GameManager : MonoBehaviour
                 break;
             default:
                 Time.timeScale = 0;
-                Debug.Log("GAME OVER!!!!");
+                LosePannel.SetActive(true);
                 break;
         }
     }

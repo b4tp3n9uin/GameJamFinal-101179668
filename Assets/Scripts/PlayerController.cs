@@ -20,7 +20,12 @@ public class PlayerController : MonoBehaviour
     public readonly int moveYHash = Animator.StringToHash("MovementY");
     public readonly int runHash = Animator.StringToHash("isRunning");
 
+    GameManager gameManager;
 
+    void Awake()
+    {
+        gameManager = FindObjectOfType<GameManager>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -57,5 +62,10 @@ public class PlayerController : MonoBehaviour
     {
         isRunning = value.isPressed;
         playerAnimator.SetBool(runHash, isRunning);
+    }
+
+    public void OnPause(InputValue value)
+    {
+        gameManager.Pause();
     }
 }
