@@ -11,6 +11,13 @@ public class AIScript : MonoBehaviour
     [SerializeField]
     Transform _target;
 
+    GameManager gameManager;
+
+    void Awake()
+    {
+        gameManager = FindObjectOfType<GameManager>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,12 +37,20 @@ public class AIScript : MonoBehaviour
         }
         else 
         {
-            anim.SetInteger("State", 0);
+            anim.SetInteger("State", 0); // Move when far
         }
     }
 
     public void IncreaseSpeed()
     {
         navAgent.speed += 0.5f;
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            gameManager.Damage();
+        }
     }
 }
