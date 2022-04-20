@@ -46,7 +46,7 @@ public class AIScript : MonoBehaviour
         navAgent.speed += 0.5f;
     }
 
-    void OnCollisionEnter(Collision other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
