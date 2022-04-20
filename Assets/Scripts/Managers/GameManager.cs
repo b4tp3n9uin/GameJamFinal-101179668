@@ -31,6 +31,14 @@ public class GameManager : MonoBehaviour
     public GameObject LosePannel;
     public GameObject WinPannel;
 
+    [Header("Audio")]
+    public AudioSource Eat;
+    public AudioSource Collide;
+    public AudioSource Respawn;
+    public AudioSource Win;
+    public AudioSource Lose;
+    public AudioSource open;
+
     void Awake()
     {
         enemy = FindObjectOfType<AIScript>();
@@ -98,6 +106,8 @@ public class GameManager : MonoBehaviour
 
     public void ChocoCollide()
     {
+        Eat.Play();
+
         chocolates[randomNum].SetActive(false);
         score++;
         Debug.Log("score: " + score);
@@ -106,6 +116,7 @@ public class GameManager : MonoBehaviour
 
         if (score >= chocolates.Length)
         {
+            Win.Play();
             Time.timeScale = 0;
             WinPannel.SetActive(true);
             return;
@@ -129,6 +140,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            Respawn.Play();
             timer = initialTimer;
 
             chocolates[randomNum].SetActive(false);
@@ -142,18 +154,22 @@ public class GameManager : MonoBehaviour
         switch (lives)
         {
             case 1:
+                Collide.Play();
                 livesImg[0].SetActive(false);
                 livesImg[1].SetActive(false);
                 break;
             case 2:
+                Collide.Play();
                 livesImg[0].SetActive(true);
                 livesImg[1].SetActive(false);
                 break;
             case 3:
+                open.Play();
                 livesImg[0].SetActive(true);
                 livesImg[1].SetActive(true);
                 break;
             default:
+                Lose.Play();
                 Time.timeScale = 0;
                 LosePannel.SetActive(true);
                 break;

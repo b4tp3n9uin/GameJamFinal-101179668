@@ -31,7 +31,7 @@ public class AIScript : MonoBehaviour
     {
         navAgent.SetDestination(_target.position);
 
-        if (Vector3.Distance(_target.position, transform.position) < 4.1f)
+        if (Vector3.Distance(_target.position, transform.position) < 1.1f)
         {
             anim.SetInteger("State", 1); //Idle when near player.
         }
